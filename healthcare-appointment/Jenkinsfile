@@ -5,19 +5,31 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                echo 'GitHub repository checked out by Jenkins'
+            }
+        }
+
+        stage('Locate Project') {
+            steps {
+                dir('healthcare-appointment/healthcare-appointment') {
+                    bat 'dir'
+                }
             }
         }
 
         stage('Build and Test') {
             steps {
-                bat 'mvnw.cmd -B clean test'
+                dir('healthcare-appointment/healthcare-appointment') {
+                    bat 'mvnw.cmd -B clean test'
+                }
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvnw.cmd -B package -DskipTests'
+                dir('healthcare-appointment/healthcare-appointment') {
+                    bat 'mvnw.cmd -B package -DskipTests'
+                }
             }
         }
     }
