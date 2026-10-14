@@ -5,11 +5,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'GitHub repository checked out by Jenkins'
+                echo 'GitHub checkout successful'
             }
         }
 
-        stage('Locate Project') {
+        stage('Verify Project Files') {
             steps {
                 dir('healthcare-appointment/healthcare-appointment') {
                     bat 'dir'
