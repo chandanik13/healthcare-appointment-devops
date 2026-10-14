@@ -5,15 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'GitHub checkout successful'
-            }
-        }
-
-        stage('Verify Project Files') {
-            steps {
-                dir('healthcare-appointment/healthcare-appointment') {
-                    bat 'dir'
-                }
+                echo 'Source code checked out from GitHub'
             }
         }
 
