@@ -1,0 +1,34 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcare-appointment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthcare-appointment
+  template:
+    metadata:
+      labels:
+        app: healthcare-appointment
+    spec:
+      containers:
+        - name: healthcare-appointment
+          image: chandanik/healthcare-appointment:1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthcare-appointment
+spec:
+  type: ClusterIP
+  selector:
+    app: healthcare-appointment
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
